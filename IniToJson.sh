@@ -22,7 +22,7 @@ while read i
 do
   if [[ $i == [* ]]
   then
-    echo $i | sed 's/\[\(.*\)\]/\  "\1":{/g' && LineNumber=$((LineNumber+1))
+    echo "$i" | sed 's/\[\(.*\)\]/\  "\1":{/g' && LineNumber=$((LineNumber+1))
     if [[ $(($LineNumber-1)) == $EndLine ]]
     then
        echo "  }"
@@ -41,7 +41,7 @@ do
 
     if [[ $( sed -n $((LineNumber+1))p $FilenameIniWithOutCom ) == [* ]] ||  [[ $LineNumber == $EndLine ]]
     then
-        echo $i |sed 's/"/\\"/g' |sed 's/\(.*\)=\(.*\)/        "\1": "\2"/' && LineNumber=$((LineNumber+1))
+        echo "$i" |sed 's/"/\\"/g' |sed 's/\(.*\)=\(.*\)/        "\1": "\2"/' && LineNumber=$((LineNumber+1))
 
         if [[ $(($LineNumber-1)) == $EndLine ]]
         then
